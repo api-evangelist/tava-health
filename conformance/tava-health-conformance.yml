@@ -1,0 +1,80 @@
+generated: '2026-08-29'
+method: searched
+source: >-
+  https://www.tavahealth.com/ (site footer compliance statement) and
+  https://www.tavahealth.com/notice-of-privacy-practices (HIPAA Notice of Privacy Practices,
+  effective 2024-08-01)
+name: Tava Health conformance and compliance
+description: >-
+  Compliance posture Tava Health publishes about itself. Tava is a US digital behavioral-health
+  company, so its governing regime is HIPAA; it states HIPAA and SOC 2 Type II compliance on every
+  page of its marketing site and publishes a HIPAA-mandated Notice of Privacy Practices. No
+  technical/domain standard conformance can be asserted, because no machine-readable contract is
+  published for this pass to read.
+compliance:
+- id: hipaa
+  conforms: true
+  evidence:
+    claim: HIPAA and SOC-2 Type II compliant
+    location: Site footer, present on every page of https://www.tavahealth.com/
+    supporting_document: https://www.tavahealth.com/notice-of-privacy-practices
+    supporting_detail: >-
+      A HIPAA Notice of Privacy Practices is a document the Privacy Rule REQUIRES a covered entity
+      to publish, so its existence is itself substantive evidence rather than a marketing claim.
+      Effective 2024-08-01. It names Tava Professionals (a set of state-level professional entities)
+      as the covered entity and Tava Health, Inc. as their business associate, bound by contractual
+      limits on the use and disclosure of PHI, and commits to breach notification within 60 days.
+    privacy_contact: hello@tavahealth.com
+  verified_by_api_evangelist: false
+  note: >-
+    This records what the provider publishes. API Evangelist does not audit or certify compliance,
+    and no attestation report was retrieved.
+- id: soc2-type-ii
+  conforms: claimed
+  evidence:
+    claim: HIPAA and SOC-2 Type II compliant
+    location: Site footer, https://www.tavahealth.com/
+  report_available: false
+  note: >-
+    A Type II attestation is claimed but no report, trust center, or auditor is named anywhere
+    public. There is no trust.tavahealth.com, security.tavahealth.com, /trust, /security or
+    /compliance page — all were probed and do not resolve or 404. The claim is recorded as claimed,
+    not verified.
+standards:
+- id: oauth2
+  conforms: unknown
+  evidence: No public contract or auth documentation; /.well-known/oauth-authorization-server 404s on every host.
+- id: oidc
+  conforms: unknown
+  evidence: /.well-known/openid-configuration 404s on www and docs, and returns an SPA shell on the two portal hosts.
+- id: fhir
+  conforms: unknown
+  evidence: >-
+    Not established. FHIR is the domain standard worth probing first for a US behavioral-health
+    company that exchanges clinical and eligibility data with health plans, and Tava's DirectCare
+    partner product is exactly the surface where it would live — but the developer hub is
+    password-protected, so no conformance can be asserted either way. Recording unknown rather than
+    false: this pipeline never invents a conformance to fill a slot, and never denies one it could
+    not read.
+- id: x12-270-271
+  conforms: unknown
+  evidence: >-
+    Not established. Tava publicly integrates Sohar Health's real-time insurance eligibility APIs
+    (per Sohar's own customer page), and real-time eligibility is X12 270/271 territory — but Tava
+    is the CONSUMER of that API, not its publisher, so this says nothing about a contract Tava
+    ships. Noted so a later pass does not mistake Tava's integration for Tava's own surface.
+- id: rfc9457
+  conforms: unknown
+  evidence: No contract to read error formats from.
+- id: pagination
+  conforms: unknown
+  evidence: No contract to read.
+- id: idempotency
+  conforms: unknown
+  evidence: No contract to read.
+domain_standard:
+  declared: false
+  note: >-
+    Reward-only check. No domain standard signature (FHIR resource, SCIM URN, OData $metadata, X12
+    message type, HL7v2 segment) could be observed, because no contract is public. Absent, not
+    failed.

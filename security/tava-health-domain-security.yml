@@ -1,0 +1,57 @@
+generated: '2026-08-29'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml hosts, extended by hand to the three additional Tava Health
+  hosts discovered during contract discovery (client portal, provider portal, developer hub)
+hosts:
+- host: www.tavahealth.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 15 08:32:09 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+  note: Marketing site (Webflow).
+- host: care.tavahealth.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Dec 12 23:59:59 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+  hsts_include_subdomains: true
+  server: AmazonS3
+  note: Client (member) portal. Static single-page app served from S3; catch-all route answers 200 for
+    every path.
+- host: app.tavahealth.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Dec 12 23:59:59 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+  hsts_include_subdomains: true
+  server: AmazonS3
+  note: Provider/administrative portal ("Harmony"). Static single-page app served from S3.
+- host: docs.tavahealth.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 18 18:57:58 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+  hsts_include_subdomains: false
+  server: cloudflare
+  note: DirectCare developer hub on ReadMe.io behind Cloudflare. Password-gated; sets x-frame-options
+    Deny, x-content-type-options nosniff, and a 100-request rate limit header.
+domains:
+- domain: tavahealth.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+  dnssec_note: No DNSKEY record — the zone is not signed.
+  caa_note: No CAA record published; any CA may issue for this domain.
+  dmarc_note: Policy p=quarantine — deployed and enforcing, short of p=reject.
+name: Tava Health domain security
+description: TLS, HSTS and DNS posture across every Tava Health host found in this pass. All four hosts
+  serve TLS 1.3 with valid certificates and HSTS at a one-year max-age; the two portal hosts additionally
+  set includeSubDomains. At the DNS layer tavahealth.com publishes SPF and a DMARC policy of quarantine
+  but has no DNSSEC and no CAA record — both are absences, recorded as observed rather than inferred.
+hosts_probed: 4

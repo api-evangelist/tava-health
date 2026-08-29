@@ -64,5 +64,27 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Tava Health is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://www.nasdaqprivatemarket.com/
+Tava Health, Inc. is a Utah-founded (2019) digital behavioral-health company that sells mental
+health care as an employer and health-plan benefit. Members are matched to a licensed therapist —
+typically within about twelve hours — and receive care over secure video or in person through a
+nationwide clinical network. Care is delivered by Tava Professionals, a set of state-level
+professional entities that act as the HIPAA covered entity, while Tava Health, Inc. operates the
+technology platform as their business associate.
+
+- Website: https://www.tavahealth.com/
+- Developer hub (password-protected): https://docs.tavahealth.com/
+- Status: https://tavahealth.statuspage.io/
+- GitHub: https://github.com/tava-health
+
+## API surface
+
+Tava Health publishes **no public machine-readable API contract** — no OpenAPI, AsyncAPI, GraphQL
+SDL, Postman collection, MCP server, A2A agent card, Protobuf or WSDL. A developer hub for the
+partner-facing **DirectCare** product exists at `docs.tavahealth.com` (ReadMe.io) but is
+password-protected at the project level: every path returns `302 -> /password`, including a control
+path that does not exist.
+
+Note for future passes: `github.com/tava-health/docs/api-reference/openapi.json` is **not** Tava's
+API. That repository is an unmodified Mintlify starter kit, and the file is Mintlify's sample
+"OpenAPI Plant Store" (`servers: http://sandbox.mintlify.com`). It is recorded as a rejected
+contract in `packages/tava-health-packages.yml`.

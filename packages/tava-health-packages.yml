@@ -1,0 +1,77 @@
+generated: '2026-08-29'
+method: searched
+source: >-
+  Registry searches against registry.npmjs.org, pypi.org, and the GitHub org
+  https://github.com/tava-health (all unauthenticated), plus the Tava Health marketing site.
+name: Tava Health packages
+description: >-
+  No first-party Tava Health client library exists in any public package registry. Searched npm
+  (text search for "tavahealth" and "tava health"), PyPI (tavahealth, tava-health, tava — all 404),
+  and enumerated every public repository in the tava-health GitHub organization. Nothing
+  first-party and installable was found. There is also no SDK to publish against, since Tava
+  publishes no public API contract.
+package_count: 0
+packages: []
+registries_searched:
+- registry: npm
+  endpoint: https://registry.npmjs.org/-/v1/search
+  queries: ["tavahealth", "tava health"]
+  result: no first-party package; all hits are unrelated generic health/health-check libraries
+- registry: pypi
+  endpoint: https://pypi.org/pypi/<name>/json
+  queries: ["tavahealth", "tava-health", "tava"]
+  result: 404 on all three
+- registry: github-org
+  endpoint: https://api.github.com/orgs/tava-health/repos
+  result: 6 public repositories, none of which is a client library (see github_org below)
+github_org:
+  url: https://github.com/tava-health
+  public_repos: 6
+  first_party_sdk: false
+  repos:
+  - name: graphql-shield
+    fork: true
+    note: Fork of a third-party GraphQL permissions library. Not a Tava product.
+  - name: circleci-config-sdk-ts
+    fork: true
+    note: Fork of CircleCI's config SDK. Not a Tava product.
+  - name: data-technical-assessment
+    fork: false
+    language: PLpgSQL
+    note: Hiring take-home exercise ("Tava Health - Data Technical Assessment"). Not a product.
+  - name: technical-assessment
+    fork: false
+    language: JavaScript
+    note: Hiring take-home exercise. Not a product.
+  - name: mintlify-docs
+    fork: false
+    language: MDX
+    note: >-
+      UNMODIFIED Mintlify starter kit, pushed 2026-06-12, 11 files. docs.json still reads
+      "name": "Mintlify Starter Kit" with Mintlify's own default colors, index.mdx still says
+      "Write a short description of your product here", and AGENTS.md still carries the
+      first-time-setup prompt. Contains no Tava content.
+  - name: docs
+    fork: false
+    language: MDX
+    note: >-
+      UNMODIFIED Mintlify starter kit, pushed 2026-03-03, 38 files, docs.json name
+      "Mint Starter Kit". It contains api-reference/openapi.json — see rejected_contracts below.
+      Contains no Tava content.
+rejected_contracts:
+- url: https://raw.githubusercontent.com/tava-health/docs/main/api-reference/openapi.json
+  status: 200
+  parses_as_openapi: true
+  openapi_version: 3.1.0
+  rejected: true
+  rejection_basis: ownership
+  finding: >-
+    This file is a valid OpenAPI 3.1.0 document sitting in Tava Health's own GitHub organization,
+    and it is NOT Tava's. It is the Mintlify starter-kit sample: info.title "OpenAPI Plant Store",
+    description "A sample API that uses a plant store as an example to demonstrate features in the
+    OpenAPI specification", servers[0].url http://sandbox.mintlify.com, no info.contact, and two
+    paths (/plants, /plants/{id}). The sibling api-reference/introduction.mdx still carries
+    Mintlify's own note: "If you're not looking to build API reference documentation, you can
+    delete this section by removing the api-reference folder." Saving it would have credited Tava
+    Health with a plant-store API it does not sell, and every artifact derived from it — auth,
+    errors, data model, skills, crosswalk — would have inherited that. Not saved, not derived from.

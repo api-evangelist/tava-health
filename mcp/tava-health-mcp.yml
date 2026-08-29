@@ -1,0 +1,41 @@
+generated: '2026-08-29'
+method: searched
+source: >-
+  Searched for a hosted or packaged Tava Health MCP server across npm, PyPI, the tava-health GitHub
+  organization, and every Tava host; probed /.well-known/agent-card.json and /.well-known/agent.json
+  on all four hosts. Nothing found.
+name: Tava Health MCP
+description: >-
+  Tava Health ships no MCP server, hosted or local, and none could be derived. The derivation path
+  requires an OpenAPI definition to convert operations into candidate tools, and Tava publishes no
+  machine-readable contract, so this file records the search result rather than a candidate tool
+  list. No MCPServer pointer is wired into apis.yml — emitting one would assert an agent surface
+  that does not exist.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: searched
+status: none
+tools: []
+tool_count: 0
+searched:
+- surface: npm registry
+  query: tavahealth / tava health
+  result: no MCP package
+- surface: PyPI
+  query: tavahealth, tava-health, tava
+  result: 404 on all
+- surface: https://github.com/tava-health
+  result: 6 public repos, no MCP server (2 forks, 2 hiring exercises, 2 unmodified Mintlify starter kits)
+- surface: /.well-known/agent-card.json and /.well-known/agent.json
+  hosts: [www.tavahealth.com, care.tavahealth.com, app.tavahealth.com, docs.tavahealth.com]
+  result: >-
+    404 on www; HTML SPA shell 200s on care and app (rejected as catch-all false positives);
+    302 to the password gate on docs. No agent card, and therefore no agent card pointing at an
+    MCP endpoint.
+derivation:
+  possible: false
+  reason: No OpenAPI definition is published, so there are no operations to project into candidate tools.

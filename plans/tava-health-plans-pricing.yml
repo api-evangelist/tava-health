@@ -1,0 +1,30 @@
+generated: '2026-08-29'
+method: searched
+source: https://www.tavahealth.com/employers
+name: Tava Health plans and pricing
+description: >-
+  Tava Health publishes no pricing. It sells mental-health benefits to employers, health plans and
+  provider groups through a sales motion: every commercial call to action on the site routes to a
+  demo request or a contact form rather than to a plan, a price, or a self-serve checkout. There is
+  no developer or API pricing surface of any kind, which follows from there being no public API
+  product. Members do not buy from Tava directly — their employer or health plan does.
+plan_count: 0
+plans: []
+pricing_model: enterprise-contract
+self_serve: false
+free_tier: false
+public_price_list: false
+evidence:
+- url: https://www.tavahealth.com/employers
+  status: 200
+  note: Employer product page. Calls to action are "Get a demo" / "Contact us"; no prices.
+- url: https://www.tavahealth.com/demo
+  status: 200
+  note: Demo request form. This is the commercial entry point, not a pricing page.
+- url: https://www.tavahealth.com/sitemap.xml
+  status: 200
+  note: >-
+    302 URLs enumerated; no /pricing, /plans, or /cost path exists anywhere in the sitemap.
+api_pricing:
+  present: false
+  note: No API product is publicly offered, so there is no API metering, quota or overage to record.

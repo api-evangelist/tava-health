@@ -1,0 +1,157 @@
+generated: '2026-08-29'
+method: probed
+source: >-
+  Direct HTTP probe of /.well-known/* on every Tava Health host discovered in this pass
+  (marketing site, client portal, provider portal, developer hub). No path returned a real
+  document; no WellKnown or SecurityTxt pointer is emitted in apis.yml as a result.
+name: Tava Health well-known probe
+description: >-
+  Tava Health serves no /.well-known/ documents on any host. The two application hosts
+  (care.tavahealth.com, app.tavahealth.com) are single-page applications whose catch-all route
+  answers HTTP 200 with an HTML shell for EVERY path, including paths that do not exist — those
+  200s are recorded below as misses, not as documents. docs.tavahealth.com is a password-protected
+  ReadMe.io hub that 302s every path to /password, verified against a control path that does not
+  exist, so its 302s are the gate rather than evidence of a document.
+hosts:
+- host: www.tavahealth.com
+  note: Marketing site (Webflow). Honest 404s — this host has a real router.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: care.tavahealth.com
+  note: >-
+    Client portal SPA. Returns 200 with a 2,607-byte HTML shell for every path probed. Treated as
+    a miss on all paths — this is the SPA catch-all false positive the pipeline warns about.
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: null
+    result: miss
+    reason: HTML SPA shell, not a document
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: null
+    result: miss
+    reason: HTML SPA shell, not a document
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: null
+    result: miss
+    reason: HTML SPA shell, not a document
+  - path: /.well-known/api-catalog
+    status: 200
+    file: null
+    result: miss
+    reason: HTML SPA shell, not a document
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    file: null
+    result: miss
+    reason: HTML SPA shell, not a document
+  - path: /.well-known/agent-card.json
+    status: 200
+    file: null
+    result: miss
+    reason: HTML SPA shell, not a document
+  - path: /.well-known/agent.json
+    status: 200
+    file: null
+    result: miss
+    reason: HTML SPA shell, not a document
+- host: app.tavahealth.com
+  note: >-
+    Provider/administrative portal SPA ("Harmony"). Returns 200 with a 2,091-byte HTML shell for
+    every path probed. Treated as a miss on all paths.
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: null
+    result: miss
+    reason: HTML SPA shell, not a document
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: null
+    result: miss
+    reason: HTML SPA shell, not a document
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: null
+    result: miss
+    reason: HTML SPA shell, not a document
+  - path: /.well-known/api-catalog
+    status: 200
+    file: null
+    result: miss
+    reason: HTML SPA shell, not a document
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    file: null
+    result: miss
+    reason: HTML SPA shell, not a document
+  - path: /.well-known/agent-card.json
+    status: 200
+    file: null
+    result: miss
+    reason: HTML SPA shell, not a document
+  - path: /.well-known/agent.json
+    status: 200
+    file: null
+    result: miss
+    reason: HTML SPA shell, not a document
+- host: docs.tavahealth.com
+  note: >-
+    DirectCare developer hub on ReadMe.io, project-password protected. Every path 302s to
+    /password?redirect=<path>; a deliberate control probe of a nonsense path returned the same
+    302, so these redirects prove the gate, not the presence of a document.
+  documents:
+  - path: /.well-known/security.txt
+    status: 302
+    file: null
+    result: gated
+  - path: /.well-known/agent-card.json
+    status: 302
+    file: null
+    result: gated
+  - path: /.well-known/agent.json
+    status: 302
+    file: null
+    result: gated
+  - path: /.well-known/ai-plugin.json
+    status: 302
+    file: null
+    result: gated
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+summary:
+  hosts_probed: 4
+  documents_served: 0
+  pointer_emitted: false
+  pointer_note: >-
+    No WellKnown and no SecurityTxt pointer is wired into apis.yml, because not one path returned a
+    real document. This file records a verified absence.

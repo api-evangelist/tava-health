@@ -1,0 +1,68 @@
+generated: '2026-08-29'
+method: searched
+source: https://tavahealth.statuspage.io/
+name: Tava Health lifecycle
+description: >-
+  Operational lifecycle surface for Tava Health. The company runs a real Atlassian Statuspage with
+  three declared components and a machine-readable JSON API. No public versioning policy,
+  deprecation policy, SLA or changelog was found — the DirectCare developer hub that would carry
+  them is password-protected.
+status_page:
+  present: true
+  url: https://tavahealth.statuspage.io/
+  title: Tava Health Status
+  platform: Atlassian Statuspage
+  page_id: ksx26166q8bb
+  time_zone: America/Denver
+  self_declared_url: http://status.tavahealth.com
+  self_declared_url_note: >-
+    The Statuspage page object declares its canonical URL as http://status.tavahealth.com, but that
+    hostname does not resolve (DNS failure, curl exit 6). The working address is the
+    tavahealth.statuspage.io origin, which is what the apis.yml StatusPage pointer uses. This is a
+    real defect on Tava's side worth reporting: the vanity CNAME was configured in Statuspage but
+    never published in DNS.
+  machine_readable:
+    summary: https://tavahealth.statuspage.io/api/v2/summary.json
+    status: https://tavahealth.statuspage.io/api/v2/status.json
+    format: Atlassian Statuspage API v2
+    note: >-
+      This is Atlassian's status API shape served on Tava's behalf, not a Tava-authored contract.
+      It is recorded as an operational signal, never as the provider's own API contract.
+  components:
+  - name: Live Sessions (Video, Audio, and Chat)
+    status: operational
+  - name: Provider Web Portal
+    status: operational
+    description: Web portal for providers to schedule appointments and manage clients
+  - name: Client Web Portal
+    status: operational
+    description: Web portal for clients to join and log in to Tava, choose providers
+  observed:
+    at: '2026-08-29'
+    indicator: none
+    description: All Systems Operational
+    open_incidents: 0
+versioning_policy:
+  present: false
+  note: No public versioning policy found; any such policy sits behind the docs.tavahealth.com password gate.
+deprecation_policy:
+  present: false
+  sunset_header: unknown
+  deprecation_header: unknown
+  note: >-
+    No deprecation or sunset policy is published publicly, and no pointer of type Deprecation is
+    emitted. RFC 8594 Sunset/Deprecation header behaviour cannot be observed without a reachable
+    API host.
+sla:
+  present: false
+  note: No public SLA document found on the marketing site.
+changelog:
+  present: false
+  public: false
+  note: >-
+    docs.tavahealth.com/changelog returns 302 to the password gate, the same as every other path on
+    that host including a control path that does not exist. A changelog may exist behind the wall;
+    its presence is not established, so no ChangeLog pointer is emitted.
+deprecated_operations:
+  derivable: false
+  note: No OpenAPI definition is published, so deprecated operations cannot be derived.

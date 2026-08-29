@@ -1,0 +1,25 @@
+generated: '2026-08-29'
+method: searched
+source: https://docs.tavahealth.com/
+name: Tava Health rate limits
+description: >-
+  No rate limits are published. Tava Health's only developer documentation is the DirectCare hub at
+  docs.tavahealth.com, which is password-protected at the project level and 302s every path to
+  /password. No API host is publicly named, so no live unauthenticated response could be observed
+  either, and no limit, window, burst, response header or exhaustion status code can be recorded.
+  An honest zero.
+limit_count: 0
+limits: []
+response_headers: []
+exhaustion_status: unknown
+observed_live: false
+evidence:
+- url: https://docs.tavahealth.com/reference
+  status: 302
+  note: Redirects to /password?redirect=/reference. Same response as a control path that does not exist.
+- url: https://www.tavahealth.com/sitemap.xml
+  status: 200
+  note: No developer, API, or limits page anywhere in the public sitemap.
+note: >-
+  Rate limits may well be documented behind the DirectCare password gate. This file records that
+  they are not publicly readable, which is the fact an integrator evaluating Tava would hit.
