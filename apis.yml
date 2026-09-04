@@ -12,6 +12,19 @@ description: >-
   administrators. Tava also runs DirectCare, a partner-facing product with its own developer hub at
   docs.tavahealth.com; that hub is a ReadMe.io site and is password-protected, so no public API
   reference, OpenAPI definition or other machine-readable contract is available at this time.
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source:
+  - rate-limits
+  - security
+  generated: '2026-09-02'
+  method: derived
 image: https://cdn.prod.website-files.com/69b16eaa32e6453c489312a1/69b16eaa32e6453c489312ea_649c6f80719c67b8516a71ee_webclip.webp
 url: https://raw.githubusercontent.com/api-evangelist/tava-health/refs/heads/main/apis.yml
 x-type: company
